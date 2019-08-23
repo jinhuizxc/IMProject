@@ -45,6 +45,9 @@ import java.util.UUID;
  * <p>
  * Android 阿里云OSS上传
  * https://blog.csdn.net/qq_31939617/article/details/90256659
+ *
+ * 安卓手把手教你结合阿里云OSS存储实现视频（音频，图片）的上传与下载
+ * https://blog.csdn.net/u012534831/article/details/51240385
  */
 public class App extends CommonApplication {
 
