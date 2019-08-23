@@ -34,6 +34,7 @@ import butterknife.OnClick;
  * 快速打造一款IM聊天项目
  *
  * 图片选择器的实现
+ *
  */
 public class MainActivity extends BaseActivity implements
         BottomNavigationView.OnNavigationItemSelectedListener,

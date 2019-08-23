@@ -19,7 +19,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.example.improject.R;
+import com.example.common.R;
 import com.example.common.widget.recycler.RecyclerAdapter;
 
 import java.io.File;
