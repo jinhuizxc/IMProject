@@ -1,6 +1,14 @@
 package com.example.factory.persistence;
 
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.text.TextUtils;
+
+import com.example.factory.Factory;
+import com.example.factory.model.db.User;
+import com.example.factory.model.db.User_Table;
+import com.orhanobut.logger.Logger;
+import com.raizlabs.android.dbflow.sql.language.SQLite;
 
 /**
  * 账户信息
@@ -28,10 +36,64 @@ public class Account {
     /**
      * 存储数据到XML文件，持久化
      */
-    public static void save(Context context){
+    public static void save(Context context) {
         // 获取数据持久化的SP
-
+        SharedPreferences sharedPreferences = context.getSharedPreferences(Account.class.getName(),
+                Context.MODE_PRIVATE);
+        // 存储数据
+        sharedPreferences.edit()
+                .putString(KEY_PUSH_ID, pushId)
+                .putBoolean(KEY_IS_BIND, isBind)
+                .putString(KEY_TOKEN, token)
+                .putString(KEY_USER_ID, userId)
+                .putString(KEY_ACCOUNT, account)
+                .apply();
     }
+
+
+    public static void load(Context context) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences(Account.class.getName(),
+                Context.MODE_PRIVATE);
+        pushId = sharedPreferences.getString(KEY_PUSH_ID, "");
+        isBind = sharedPreferences.getBoolean(KEY_IS_BIND, false);
+        token = sharedPreferences.getString(KEY_TOKEN, "");
+        userId = sharedPreferences.getString(KEY_USER_ID, "");
+        account = sharedPreferences.getString(KEY_ACCOUNT, "");
+    }
+
+    /**
+     * 返回当前账户是否登录
+     *
+     * @return True已登录
+     */
+    public static boolean isLogin() {
+        // 用户Id 和 Token 不为空
+        return !TextUtils.isEmpty(userId)
+                && !TextUtils.isEmpty(token);
+    }
+
+
+    /**
+     * 设置并存储设备的Id
+     * D/IM-Project: │ 设备pushId = 330f37b29c607f8ebab6dd8ca3813fae
+     *
+     * @param pushId 设备的推送ID
+     */
+    public static void setPushId(String pushId) {
+        Account.pushId = pushId;
+        Logger.d("设备pushId = " + pushId);
+        Account.save(Factory.app());
+    }
+
+    /**
+     * 获取推送Id
+     *
+     * @return 推送Id
+     */
+    public static String getPushId() {
+        return pushId;
+    }
+
 
     /**
      * 获取当前登录的Token
@@ -41,4 +103,28 @@ public class Account {
     public static String getToken() {
         return token;
     }
+
+
+    /**
+     * 返回用户Id
+     *
+     * @return 用户Id
+     */
+    public static String getUserId() {
+        return getUser().getId();
+    }
+
+    /**
+     * 获取当前登录的用户信息
+     *
+     * @return User
+     */
+    public static User getUser() {
+        // 如果为null返回一个new的User，其次从数据库查询
+        return TextUtils.isEmpty(userId) ? new User() : SQLite.select()
+                .from(User.class)
+                .where(User_Table.id.eq(userId))
+                .querySingle();
+    }
+
 }

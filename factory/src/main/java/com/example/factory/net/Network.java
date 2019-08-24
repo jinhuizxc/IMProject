@@ -2,7 +2,8 @@ package com.example.factory.net;
 
 import android.text.TextUtils;
 
-import com.example.common.Common;
+import com.example.improject.Common;
+import com.example.factory.Factory;
 import com.example.factory.persistence.Account;
 
 import java.io.IOException;
@@ -13,6 +14,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * 网络请求的封装
@@ -70,9 +72,11 @@ public class Network {
         // /得到一个OKClient
         OkHttpClient client = getClient();
         // Retrofit
-        Retrofit retrofit = new Retrofit.Builder()
+        instance.retrofit = new Retrofit.Builder()
                 // 设置client
                 .client(client)
+                // 设置Json解析器
+                .addConverterFactory(GsonConverterFactory.create(Factory.getGson()))
                 .baseUrl(Common.Constant.API_URL).build();
         return instance.retrofit;
     }

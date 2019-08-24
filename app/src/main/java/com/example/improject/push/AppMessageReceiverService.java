@@ -3,6 +3,7 @@ package com.example.improject.push;
 import android.content.Context;
 import android.util.Log;
 
+import com.example.factory.persistence.Account;
 import com.igexin.sdk.GTIntentService;
 import com.igexin.sdk.message.GTCmdMessage;
 import com.igexin.sdk.message.GTNotificationMessage;
@@ -107,6 +108,7 @@ public class AppMessageReceiverService extends GTIntentService {
      * @param clientid 设备Id
      */
     private void onClientInit(String clientid) {
-
+        // 设置设备Id
+        Account.setPushId(clientid);
     }
 }

@@ -6,9 +6,9 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 
 import com.bumptech.glide.Glide;
-import com.example.common.core.app.BaseFragment;
-import com.example.common.core.app.CommonApplication;
-import com.example.common.widget.PortraitView;
+import com.example.improject.common.app.BaseFragment;
+import com.example.improject.BaseApplication;
+import com.example.improject.widget.PortraitView;
 import com.example.improject.R;
 import com.example.improject.fragments.media.GalleryFragment;
 import com.yalantis.ucrop.UCrop;
@@ -57,7 +57,7 @@ public class UpdateInfoFragment extends BaseFragment {
                         options.setCompressionQuality(96);
 
                         // 得到头像的缓存地址
-                        File dPath = CommonApplication.getPortraitTmpFile();
+                        File dPath = BaseApplication.getPortraitTmpFile();
 
                         // 发起剪切
                         UCrop.of(Uri.fromFile(new File(path)), Uri.fromFile(dPath))
@@ -88,7 +88,7 @@ public class UpdateInfoFragment extends BaseFragment {
                 loadPortrait(resultUri);
             }
         } else if (resultCode == UCrop.RESULT_ERROR) {
-            CommonApplication.showToast(R.string.data_rsp_error_unknown);
+            BaseApplication.showToast(R.string.data_rsp_error_unknown);
         }
     }
 

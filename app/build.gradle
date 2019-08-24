@@ -76,10 +76,7 @@ dependencies {
     // 权限管理 easypermissions
     implementation "pub.devrel:easypermissions:$rootProject.ext.easyPMVersion"
 
-    // logger
-    implementation 'com.orhanobut:logger:2.2.0'
-
     // 个推
     implementation "com.getui:sdk:$rootProject.ext.getuiVersion"
-    implementation project(':factory')
+    api project(':factory')
 }

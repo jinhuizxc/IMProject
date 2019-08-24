@@ -35,8 +35,8 @@ dependencies {
     implementation "com.jakewharton:butterknife:$rootProject.ext.butterknifeVersion"
     annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.ext.butterknifeVersion"
     // recyclerview
-    implementation "com.android.support:recyclerview-v7:$rootProject.ext.supportVersion"
-    implementation "com.android.support:design:$rootProject.ext.supportVersion"
+    api "com.android.support:recyclerview-v7:$rootProject.ext.supportVersion"
+    api "com.android.support:design:$rootProject.ext.supportVersion"
     // genius
     implementation "net.qiujuer.genius:ui:$rootProject.ext.geniusVersion"
     implementation "net.qiujuer.genius:res:$rootProject.ext.geniusVersion"
@@ -53,4 +53,8 @@ dependencies {
     implementation "net.qiujuer.lame:lame:$rootProject.ext.lameVersion"
     implementation project(':lang')
     implementation project(':face_res')
+
+    // 全局 logger
+    api 'com.orhanobut:logger:2.2.0'
+
 }

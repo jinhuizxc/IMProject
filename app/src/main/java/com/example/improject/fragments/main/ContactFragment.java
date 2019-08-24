@@ -3,7 +3,7 @@ package com.example.improject.fragments.main;
 
 import android.app.Fragment;
 
-import com.example.common.core.app.BaseFragment;
+import com.example.improject.common.app.BaseFragment;
 import com.example.improject.R;
 
 /**

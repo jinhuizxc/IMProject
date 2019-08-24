@@ -3,8 +3,8 @@ package com.example.improject.fragments.main;
 
 import android.app.Fragment;
 
-import com.example.common.core.app.BaseFragment;
-import com.example.common.widget.GalleryView;
+import com.example.improject.common.app.BaseFragment;
+import com.example.improject.widget.GalleryView;
 import com.example.improject.R;
 
 import butterknife.BindView;

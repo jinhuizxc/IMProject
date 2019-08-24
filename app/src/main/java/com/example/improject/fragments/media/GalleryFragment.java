@@ -13,8 +13,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 
-import com.example.common.core.tools.UiTool;
-import com.example.common.widget.GalleryView;
+import com.example.improject.common.tools.UiTool;
+import com.example.improject.widget.GalleryView;
 import com.example.improject.R;
 
 /**

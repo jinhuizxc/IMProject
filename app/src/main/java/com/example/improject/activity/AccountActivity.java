@@ -3,7 +3,7 @@ package com.example.improject.activity;
 import android.content.Context;
 import android.content.Intent;
 
-import com.example.common.core.app.BaseActivity;
+import com.example.improject.common.app.BaseActivity;
 import com.example.improject.R;
 import com.example.improject.fragments.user.UpdateInfoFragment;
 
