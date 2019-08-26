@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.text.TextUtils;
 
 import com.example.factory.Factory;
+import com.example.factory.model.api.account.AccountRspModel;
 import com.example.factory.model.db.User;
 import com.example.factory.model.db.User_Table;
 import com.orhanobut.logger.Logger;
@@ -104,6 +105,15 @@ public class Account {
         return token;
     }
 
+    /**
+     * 是否已经绑定到了服务器
+     *
+     * @return True已绑定
+     */
+    public static boolean isBind() {
+        return isBind;
+    }
+
 
     /**
      * 返回用户Id
@@ -127,4 +137,29 @@ public class Account {
                 .querySingle();
     }
 
+    /**
+     * 保存我自己的信息到持久化XML中
+     *
+     * @param model AccountRspModel
+     */
+    public static void login(AccountRspModel model) {
+        // 存储当前登录的账户, token, 用户Id，方便从数据库中查询我的信息
+        Account.token = model.getToken();
+        Account.account = model.getAccount();
+        Account.userId = model.getUser().getId();
+        Logger.d("保存登录信息: "
+                + " token: " + token
+                + " account: " + account
+                + " userId: " + userId
+                + " isBind: " + model.isBind());
+        save(Factory.app());
+    }
+
+    /**
+     * 设置绑定状态
+     */
+    public static void setBind(boolean isBind) {
+        Account.isBind = isBind;
+        Account.save(Factory.app());
+    }
 }

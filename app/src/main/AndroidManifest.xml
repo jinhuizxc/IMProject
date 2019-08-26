@@ -40,7 +40,7 @@
             android:screenOrientation="portrait"/>
 
         <activity
-            android:name=".activity.MainActivity"
+            android:name=".activity.LaunchActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Main">
             <intent-filter>
@@ -54,6 +54,12 @@
             android:name="com.yalantis.ucrop.UCropActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+
+        <activity
+            android:name=".activity.MainActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Main" />
+
 
         <service
             android:name=".push.AppPushService"

@@ -1,5 +1,7 @@
 package com.example.improject.activity;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.view.Menu;
@@ -32,13 +34,12 @@ import butterknife.OnClick;
 /**
  * 4.10
  * 快速打造一款IM聊天项目
- *
+ * <p>
  * 图片选择器的实现
- *
  */
 public class MainActivity extends BaseActivity implements
         BottomNavigationView.OnNavigationItemSelectedListener,
-NavHelper.OnTabChangedListener<Integer>{
+        NavHelper.OnTabChangedListener<Integer> {
 
     @BindView(R.id.appbar)
     View mLayAppbar;
@@ -59,6 +60,16 @@ NavHelper.OnTabChangedListener<Integer>{
     FloatActionButton mAction;
 
     private NavHelper<Integer> navHelper;
+
+
+    /**
+     * MainActivity 显示的入口
+     *
+     * @param context 上下文
+     */
+    public static void startActivity(Context context) {
+        context.startActivity(new Intent(context, MainActivity.class));
+    }
 
 
     @Override
@@ -115,7 +126,7 @@ NavHelper.OnTabChangedListener<Integer>{
 
     @OnClick(R.id.btn_action)
     void onActionClick() {
-        AccountActivity.show(this);
+        AccountActivity.startActivity(this);
     }
 
     // 需要返回true表示处理，才能底部tab切换效果

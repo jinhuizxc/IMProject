@@ -1,7 +1,9 @@
 package com.example.factory.net;
 
+import android.support.annotation.NonNull;
 import android.text.TextUtils;
 
+import com.blankj.utilcode.util.LogUtils;
 import com.example.improject.Common;
 import com.example.factory.Factory;
 import com.example.factory.persistence.Account;
@@ -13,6 +15,7 @@ import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -43,6 +46,13 @@ public class Network {
                 .writeTimeout(writeTimeout, TimeUnit.SECONDS)
                 .readTimeout(readTimeout, TimeUnit.SECONDS)
                 // 给所有的请求添加一个拦截器
+                .addNetworkInterceptor(new HttpLoggingInterceptor(
+                                new HttpLoggingInterceptor.Logger() {
+                    @Override
+                    public void log(@NonNull String message) {
+                        LogUtils.d("拦截的网络请求: " + message);
+                    }
+                }).setLevel(HttpLoggingInterceptor.Level.BODY))
                 .addInterceptor(new Interceptor() {
                     @Override
                     public Response intercept(Chain chain) throws IOException {
@@ -79,6 +89,15 @@ public class Network {
                 .addConverterFactory(GsonConverterFactory.create(Factory.getGson()))
                 .baseUrl(Common.Constant.API_URL).build();
         return instance.retrofit;
+    }
+
+    /**
+     * 返回一个请求代理
+     *
+     * @return RemoteService
+     */
+    public static RemoteService remote(){
+        return Network.getRetrofit().create(RemoteService.class);
     }
 
 }

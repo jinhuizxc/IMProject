@@ -21,7 +21,7 @@ import butterknife.OnClick;
 import static android.app.Activity.RESULT_OK;
 
 /**
- * 用户更新信息的界面
+ * 更新用户信息的界面
  */
 public class UpdateInfoFragment extends BaseFragment {
 
