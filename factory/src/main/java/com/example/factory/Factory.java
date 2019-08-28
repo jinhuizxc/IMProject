@@ -2,6 +2,10 @@ package com.example.factory;
 
 import android.support.annotation.StringRes;
 
+import com.example.factory.data.group.GroupCenter;
+import com.example.factory.data.group.GroupDispatcher;
+import com.example.factory.data.message.MessageCenter;
+import com.example.factory.data.message.MessageDispatcher;
 import com.example.factory.model.api.RspModel;
 import com.example.factory.model.api.account.AccountRspModel;
 import com.example.factory.model.db.User;
@@ -62,6 +66,17 @@ public class Factory {
     public static BaseApplication app() {
         return BaseApplication.getInstance();
     }
+
+    /**
+     * 异步运行的方法
+     *
+     * @param runnable Runnable
+     */
+    public static void runOnAsync(Runnable runnable) {
+        // 拿到单例，拿到线程池，然后异步执行
+        instance.executor.execute(runnable);
+    }
+
 
     /**
      * 返回一个全局的Gson，在这可以进行Gson的一些全局的初始化
@@ -141,6 +156,25 @@ public class Factory {
         if (callback != null)
             callback.onDataNotAvailable(resId);
     }
+
+    /**
+     * 获取一个群处理中心的实现类
+     *
+     * @return 群中心的规范接口
+     */
+    public static GroupCenter getGroupCenter() {
+        return GroupDispatcher.instance();
+    }
+
+    /**
+     * 获取一个消息中心的实现类
+     *
+     * @return 消息中心的规范接口
+     */
+    public static MessageCenter getMessageCenter() {
+        return MessageDispatcher.instance();
+    }
+
 
     /**
      * 收到账户退出的消息需要进行账户退出重新登录

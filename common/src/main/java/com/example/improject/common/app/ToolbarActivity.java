@@ -1,20 +1,20 @@
 package com.example.improject.common.app;
 
-import android.app.Activity;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
 
 import com.example.improject.R;
 
 public abstract class ToolbarActivity extends BaseActivity {
-
     protected Toolbar mToolbar;
+
 
     @Override
     protected void initWidget() {
         super.initWidget();
         initToolbar((Toolbar) findViewById(R.id.toolbar));
     }
+
     /**
      * 初始化toolbar
      *
@@ -25,6 +25,7 @@ public abstract class ToolbarActivity extends BaseActivity {
         if (toolbar != null) {
             setSupportActionBar(toolbar);
         }
+
         initTitleNeedBack();
     }
 
@@ -36,5 +37,4 @@ public abstract class ToolbarActivity extends BaseActivity {
             actionBar.setHomeButtonEnabled(true);
         }
     }
-
 }

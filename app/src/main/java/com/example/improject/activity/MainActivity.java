@@ -15,6 +15,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.drawable.GlideDrawable;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.ViewTarget;
+import com.example.factory.persistence.Account;
 import com.example.improject.common.app.BaseActivity;
 import com.example.improject.widget.PortraitView;
 import com.example.improject.R;
@@ -111,7 +112,8 @@ public class MainActivity extends BaseActivity implements
         Menu menu = mNavigation.getMenu();
         // 触发首次选中Home
         menu.performIdentifierAction(R.id.action_home, 0);
-
+        // 初始化头像加载
+        mPortrait.setup(Glide.with(this), Account.getUser());
     }
 
     @OnClick(R.id.im_portrait)

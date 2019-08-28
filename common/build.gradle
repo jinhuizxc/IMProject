@@ -46,7 +46,7 @@ dependencies {
     // circleimageview
     api "de.hdodenhof:circleimageview:$rootProject.ext.circleimageviewVersion"
     // glide
-    implementation "com.github.bumptech.glide:glide:$rootProject.ext.glideVersion"
+    api "com.github.bumptech.glide:glide:$rootProject.ext.glideVersion"
     // gson
     api "com.google.code.gson:gson:$rootProject.ext.gsonVersion"
     // 空气面板

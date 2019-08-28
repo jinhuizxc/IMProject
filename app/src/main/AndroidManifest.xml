@@ -60,6 +60,21 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Main" />
 
+        <activity
+            android:name=".activity.PersonalActivity"
+            android:label="@string/title_activity_personal"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.TransStatusBar" />
+
+        <activity
+            android:name=".activity.MessageActivity"
+            android:label="@string/title_activity_message"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Message"
+            android:windowSoftInputMode="adjustResize" />
+
+
+
 
         <service
             android:name=".push.AppPushService"

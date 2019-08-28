@@ -3,6 +3,7 @@ package com.example.factory.data.helper;
 import android.text.TextUtils;
 
 import com.example.factory.Factory;
+import com.example.factory.R;
 import com.example.factory.model.api.RspModel;
 import com.example.factory.model.api.account.AccountRspModel;
 import com.example.factory.model.api.account.LoginModel;
@@ -49,6 +50,9 @@ public class AccountHelper {
         call.enqueue(new AccountRspCallback(callback));
     }
 
+    /**
+     * 请求的回调部分封装
+     */
     private static class AccountRspCallback implements Callback<RspModel<AccountRspModel>> {
 
         final DataSource.Callback<User> callback;
@@ -107,7 +111,9 @@ public class AccountHelper {
 
         @Override
         public void onFailure(Call<RspModel<AccountRspModel>> call, Throwable t) {
-
+            // 网络请求失败
+            if (callback != null)
+                callback.onDataNotAvailable(R.string.data_network_error);
         }
     }
 

@@ -1,10 +1,12 @@
-package com.example.factory.model;
+package com.example.improject.factory.model;
 
 /**
  * 基础用户接口
+ *
+ * @author qiujuer Email:qiujuer@live.cn
+ * @version 1.0.0
  */
 public interface Author {
-
     String getId();
 
     void setId(String id);
@@ -16,5 +18,4 @@ public interface Author {
     String getPortrait();
 
     void setPortrait(String portrait);
-
 }
