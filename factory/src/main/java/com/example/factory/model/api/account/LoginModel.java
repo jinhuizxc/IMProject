@@ -2,6 +2,9 @@ package com.example.factory.model.api.account;
 
 /**
  * 登录的model
+ *
+ * 登录的用户信息：LoginModel{account='15773003724', password='123456', pushId='84c75ff49a5dfd00dbe1d7956f61eb5a'}
+ *
  */
 public class LoginModel {
 
@@ -44,4 +47,12 @@ public class LoginModel {
         this.pushId = pushId;
     }
 
+    @Override
+    public String toString() {
+        return "LoginModel{" +
+                "account='" + account + '\'' +
+                ", password='" + password + '\'' +
+                ", pushId='" + pushId + '\'' +
+                '}';
+    }
 }

@@ -79,8 +79,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.TransStatusBar" />
 
-
-
+        <!-- 个推的Service服务,维持长链接接收消息，process 名字不可更改 -->
         <service
             android:name=".push.AppPushService"
             android:exported="true"
@@ -88,6 +87,7 @@
             android:process=":pushservice">
         </service>
 
+        <!-- 个推的消息送达服务，用以接收AppPushService处理后的有效消息接收，类似于之前的广播 -->
         <!-- permission属性在2.13.1.0版本后必须配置 -->
         <service
             android:name=".push.AppMessageReceiverService"

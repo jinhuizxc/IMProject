@@ -13,6 +13,7 @@ import com.example.factory.net.Network;
 import com.example.factory.net.RemoteService;
 import com.example.factory.persistence.Account;
 import com.example.improject.factory.data.DataSource;
+import com.orhanobut.logger.Logger;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -71,6 +72,7 @@ public class AccountHelper {
                 AccountRspModel accountRspModel = rspModel.getResult();
                 // 获取我的信息
                 User user = accountRspModel.getUser();
+                Logger.d("获取我的信息: " + user.toString());
                 DbHelper.save(User.class, user);
                 // 第一种，之间保存
                 // user.save();

@@ -16,7 +16,7 @@ import com.example.improject.R;
 import com.example.improject.common.app.BaseActivity;
 import com.example.improject.fragments.account.AccountTrigger;
 import com.example.improject.fragments.account.RegisterFragment;
-import com.example.improject.fragments.account.login.LoginFragment;
+import com.example.improject.fragments.account.LoginFragment;
 
 import net.qiujuer.genius.ui.compat.UiCompat;
 

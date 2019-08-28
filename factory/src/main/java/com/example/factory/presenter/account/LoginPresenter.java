@@ -9,6 +9,7 @@ import com.example.factory.model.db.User;
 import com.example.factory.persistence.Account;
 import com.example.improject.factory.data.DataSource;
 import com.example.improject.factory.presenter.BasePresenter;
+import com.orhanobut.logger.Logger;
 
 import net.qiujuer.genius.kit.handler.Run;
 import net.qiujuer.genius.kit.handler.runable.Action;
@@ -29,6 +30,7 @@ public class LoginPresenter extends BasePresenter<LoginContract.View> implements
         } else {
             // 尝试传递PushId
             LoginModel model = new LoginModel(phone, password, Account.getPushId());
+            Logger.d("登录的用户信息：" + model.toString());
             AccountHelper.login(model, this);
         }
     }

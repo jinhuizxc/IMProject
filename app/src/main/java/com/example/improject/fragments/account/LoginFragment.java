@@ -1,4 +1,4 @@
-package com.example.improject.fragments.account.login;
+package com.example.improject.fragments.account;
 
 import android.content.Context;
 import android.net.Uri;
@@ -20,8 +20,8 @@ import butterknife.OnClick;
 /**
  * 登录的界面
  */
-public class LoginFragment extends PresenterFragment<LoginContract.Presenter> implements LoginContract.View {
-
+public class LoginFragment extends PresenterFragment<LoginContract.Presenter>
+        implements LoginContract.View {
 
     private AccountTrigger mAccountTrigger;
 
