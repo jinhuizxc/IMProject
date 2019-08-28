@@ -10,6 +10,8 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.factory.model.db.User;
 import com.example.factory.presenter.contact.ContactContract;
+import com.example.factory.presenter.contact.ContactPresenter;
+import com.example.improject.activity.MessageActivity;
 import com.example.improject.activity.PersonalActivity;
 import com.example.improject.common.app.BaseFragment;
 import com.example.improject.R;
@@ -68,35 +70,40 @@ public class ContactFragment extends PresenterFragment<ContactContract.Presenter
             @Override
             public void onItemClick(RecyclerAdapter.ViewHolder holder, User user) {
                 // 跳转到聊天界面
-                MessageActivity.show(getContext(), user);
+                MessageActivity.startActivity(getContext(), user);
             }
         });
 
         // 初始化占位布局
         mEmptyView.bind(mRecycler);
         setPlaceHolderView(mEmptyView);
+    }
 
-
-
+    @Override
+    protected void onFirstInit() {
+        super.onFirstInit();
+        // 进行一次数据加载
+        mPresenter.start();
     }
 
     @Override
     protected ContactContract.Presenter initPresenter() {
-        return null;
+        // 初始化Presenter
+        return new ContactPresenter(this);
     }
 
     @Override
     public RecyclerAdapter<User> getRecyclerAdapter() {
-        return null;
+        return mAdapter;
     }
 
     @Override
     public void onAdapterDataChanged() {
-
+        // 进行界面操作
+        mPlaceHolderView.triggerOkOrEmpty(mAdapter.getItemCount() > 0);
     }
 
     class ViewHolder extends RecyclerAdapter.ViewHolder<User> {
-
         @BindView(R.id.im_portrait)
         PortraitView mPortraitView;
 

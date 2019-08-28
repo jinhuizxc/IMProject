@@ -90,7 +90,7 @@ public abstract class ChatFragment<InitModel>
     }
 
     @Override
-    protected final int getContentLayoutId() {
+    protected int getFragmentLayoutId() {
         return R.layout.fragment_chat_common;
     }
 
@@ -428,7 +428,6 @@ public abstract class ChatFragment<InitModel>
         @OnClick(R.id.im_portrait)
         void onRePushClick() {
             // 重新发送
-
             if (mLoading != null && mPresenter.rePush(mData)) {
                 // 必须是右边的才有可能需要重新发送
                 // 状态改变需要重新刷新界面当前的信息

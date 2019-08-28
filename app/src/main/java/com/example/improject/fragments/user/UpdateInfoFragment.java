@@ -4,6 +4,7 @@ package com.example.improject.fragments.user;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.util.Log;
 
 import com.bumptech.glide.Glide;
 import com.example.improject.common.app.BaseFragment;
@@ -24,6 +25,8 @@ import static android.app.Activity.RESULT_OK;
  * 更新用户信息的界面
  */
 public class UpdateInfoFragment extends BaseFragment {
+
+    private static final String TAG = "UpdateInfoFragment";
 
     @BindView(R.id.im_portrait)
     PortraitView mPortrait;
@@ -100,6 +103,7 @@ public class UpdateInfoFragment extends BaseFragment {
     private void loadPortrait(Uri uri) {
         // 得到头像地址
         mPortraitPath = uri.getPath();
+        Log.e(TAG, "loadPortrait: " + mPortraitPath);
 
         Glide.with(this)
                 .load(uri)

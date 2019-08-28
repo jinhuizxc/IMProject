@@ -2,8 +2,8 @@ package com.example.factory.model.card;
 
 
 
-import com.example.factory.model.Author;
 import com.example.factory.model.db.User;
+import com.example.improject.factory.model.Author;
 
 import java.util.Date;
 

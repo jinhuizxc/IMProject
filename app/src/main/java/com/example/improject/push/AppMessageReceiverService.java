@@ -3,6 +3,9 @@ package com.example.improject.push;
 import android.content.Context;
 import android.util.Log;
 
+import com.blankj.utilcode.util.ToastUtils;
+import com.example.factory.Factory;
+import com.example.factory.data.helper.AccountHelper;
 import com.example.factory.persistence.Account;
 import com.igexin.sdk.GTIntentService;
 import com.igexin.sdk.message.GTCmdMessage;
@@ -43,10 +46,7 @@ public class AppMessageReceiverService extends GTIntentService {
         }
     }
 
-
-
     // 接收 cid
-
     /**
      * I/GTIntentService: onReceiveClientId() called with:
      * context = [com.example.improject.push.AppMessageReceiverService@45fbc3],
@@ -77,15 +77,15 @@ public class AppMessageReceiverService extends GTIntentService {
         // 当个推Command命名返回时回调
         Log.i(TAG, "onReceiveCommandResult() called with: context = [" + context + "], cmdMessage = [" + cmdMessage + "]");
     }
-    // 通知到达，只有个推通道下发的通知会回调此方法
 
+    // 通知到达，只有个推通道下发的通知会回调此方法
     @Override
     public void onNotificationMessageArrived(Context context, GTNotificationMessage msg) {
         // 当通知栏消息达到时回调
         Log.i(TAG, "onNotificationMessageArrived() called with: context = [" + context + "], msg = [" + msg + "]");
     }
-    // 通知点击，只有个推通道下发的通知会回调此方法
 
+    // 通知点击，只有个推通道下发的通知会回调此方法
     @Override
     public void onNotificationMessageClicked(Context context, GTNotificationMessage msg) {
         // 当通知栏消息点击时回调
@@ -96,10 +96,17 @@ public class AppMessageReceiverService extends GTIntentService {
     /**
      * 消息达到时
      *
+     * E/GTIntentService: 新消息: [{"type":200,
+     * "content":"{\"id\":\"40bfafd0-a230-4c73-ae43-804e44be2270\",\"content\":\"12222222\",\"attach\":null,\"type\":1,
+     * \"createAt\":\"2019-08-29T00:47:08.738\",\"groupId\":null,\"senderId\":\"b96d9cd6-8953-4144-b075-7e40a12da298\",
+     * \"receiverId\":\"42199843-3424-4e28-8f8b-a42e65cdf48f\"}","createAt":"2019-08-29T00:47:08.894"}]
+     *
      * @param message 新消息
      */
     public void onMessageArrived(String message){
-
+        Logger.d("推送过来的新消息: " + message);
+        // 交给Factory处理
+        Factory.dispatchPush(message);
     }
 
     /**
@@ -110,5 +117,10 @@ public class AppMessageReceiverService extends GTIntentService {
     private void onClientInit(String clientid) {
         // 设置设备Id
         Account.setPushId(clientid);
+        if (Account.isLogin()) {
+            // 账户登录状态，进行一次PushId绑定
+            // 没有登录是不能绑定PushId的
+            AccountHelper.bindPush(null);
+        }
     }
 }

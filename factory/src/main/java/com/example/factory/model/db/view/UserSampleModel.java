@@ -1,7 +1,7 @@
 package com.example.factory.model.db.view;
 
-import com.example.factory.model.Author;
 import com.example.factory.model.db.AppDataBase;
+import com.example.improject.factory.model.Author;
 import com.raizlabs.android.dbflow.annotation.Column;
 import com.raizlabs.android.dbflow.annotation.QueryModel;
 

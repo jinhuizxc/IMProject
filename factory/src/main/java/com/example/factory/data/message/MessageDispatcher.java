@@ -70,7 +70,6 @@ public class MessageDispatcher implements MessageCenter {
                         || (TextUtils.isEmpty(card.getReceiverId())
                         && TextUtils.isEmpty(card.getGroupId())))
                     continue;
-
                 // 消息卡片有可能是推送过来的，也有可能是直接造的
                 // 推送来的代表服务器一定有，我们可以查询到（本地有可能有，有可能没有）
                 // 如果是直接造的，那么先存储本地，后发送网络

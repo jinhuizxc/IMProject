@@ -122,7 +122,7 @@ public class AccountHelper {
      *
      * @param callback Callback
      */
-    private static void bindPush(DataSource.Callback<User> callback) {
+    public static void bindPush(DataSource.Callback<User> callback) {
         // 检查是否为空
         String pushId = Account.getPushId();
         if (TextUtils.isEmpty(pushId))

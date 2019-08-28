@@ -60,7 +60,7 @@ public class MainActivity extends BaseActivity implements
     @BindView(R.id.btn_action)
     FloatActionButton mAction;
 
-    private NavHelper<Integer> navHelper;
+    private NavHelper<Integer> mNavHelper;
 
 
     /**
@@ -83,9 +83,9 @@ public class MainActivity extends BaseActivity implements
         super.initWidget();
 
         // 初始化底部辅助工具类
-        navHelper = new NavHelper<>(this, R.id.lay_container,
+        mNavHelper = new NavHelper<>(this, R.id.lay_container,
                 getSupportFragmentManager(), this);
-        navHelper.add(R.id.action_home, new NavHelper.Tab<>(ActiveFragment.class, R.string.title_home))
+        mNavHelper.add(R.id.action_home, new NavHelper.Tab<>(ActiveFragment.class, R.string.title_home))
                 .add(R.id.action_group, new NavHelper.Tab<>(GroupFragment.class, R.string.title_group))
                 .add(R.id.action_contact, new NavHelper.Tab<>(ContactFragment.class, R.string.title_contact));
 
@@ -118,12 +118,16 @@ public class MainActivity extends BaseActivity implements
 
     @OnClick(R.id.im_portrait)
     void onPortraitClick() {
-
+        PersonalActivity.startActivity(this, Account.getUserId());
     }
 
     @OnClick(R.id.im_search)
     void onSearchMenuClick() {
-
+        // 在群的界面的时候，点击顶部的搜索就进入群搜索界面
+        // 其他都为人搜索的界面
+        int type = Objects.equals(mNavHelper.getCurrentTab().extra, R.string.title_group) ?
+                SearchActivity.TYPE_GROUP : SearchActivity.TYPE_USER;
+        SearchActivity.startActivity(this, type);
     }
 
     @OnClick(R.id.btn_action)
@@ -180,7 +184,7 @@ public class MainActivity extends BaseActivity implements
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         // 转接事件流到工具类中
-        return navHelper.performClickMenu(item.getItemId());
+        return mNavHelper.performClickMenu(item.getItemId());
     }
 
     /**

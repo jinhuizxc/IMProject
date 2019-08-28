@@ -222,6 +222,15 @@ public abstract class RecyclerAdapter<T>
     }
 
     /**
+     * 返回整个集合
+     *
+     * @return List<Data>
+     */
+    public List<T> getItems() {
+        return mDataList;
+    }
+
+    /**
      * 点击监听
      * @param <T>
      */

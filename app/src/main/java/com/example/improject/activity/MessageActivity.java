@@ -14,6 +14,7 @@ import com.example.improject.common.app.BaseActivity;
 import com.example.improject.common.app.BaseFragment;
 import com.example.improject.factory.model.Author;
 import com.example.improject.fragments.message.ChatGroupFragment;
+import com.example.improject.fragments.message.ChatUserFragment;
 
 public class MessageActivity extends BaseActivity {
 
