@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 
+import com.blankj.utilcode.util.ToastUtils;
 import com.example.improject.R;
 
 import java.util.ArrayList;
@@ -100,15 +101,15 @@ public abstract class RecyclerAdapter<T>
     /**
      * 绑定数据到一个Holder上
      *
-     * @param holder
-     * @param position
+     * @param holder ViewHolder
+     * @param position 坐标
      */
     @Override
     public void onBindViewHolder(@NonNull ViewHolder<T> holder, int position) {
         // 得到需要绑定的数据
         T data = mDataList.get(position);
         // 触发Holder的绑定方法
-        holder.onBind(data);
+        holder.bind(data);
     }
 
     /**
@@ -191,6 +192,7 @@ public abstract class RecyclerAdapter<T>
     public void update(T data, ViewHolder<T> holder) {
         // 得到当前ViewHolder的坐标
         int pos = holder.getAdapterPosition();
+//        ToastUtils.showShort("pos = " + pos);
         if (pos >= 0) {
             // 进行数据的移除与更新
             mDataList.remove(pos);

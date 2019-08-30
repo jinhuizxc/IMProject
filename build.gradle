@@ -45,12 +45,19 @@ ext{
     airpanelVersion = "1.1.0"
     lameVersion = "1.2.0"
     easyPMVersion = "0.3.0"
-    getuiVersion = '2.13.2.0'
     retrofitVersion = '2.1.0'
     dbflowVersion = "4.0.4"
     ossVersion = '2.9.1'
     //utilcode
     utilcodeVersion = '1.22.10'
     okhttp3Version = '3.12.0'
+    // 个推
+    getuiVersion = '2.13.2.0'
+    //logger
+    loggerVersion = '2.2.0'
+    //utilcode
+    utilcodeVersion = '1.22.10'
+    // circleDialog
+    circleDialogVersion = '3.0.8'
 
 }

@@ -16,6 +16,9 @@ import com.example.improject.factory.model.Author;
 import com.example.improject.fragments.message.ChatGroupFragment;
 import com.example.improject.fragments.message.ChatUserFragment;
 
+/**
+ * 聊天界面
+ */
 public class MessageActivity extends BaseActivity {
 
     // 接收者Id，可以是群，也可以是人的Id

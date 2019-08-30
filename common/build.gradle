@@ -14,6 +14,7 @@ android {
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
+
     }
 
     buildTypes {
@@ -56,9 +57,16 @@ dependencies {
     api project(':lang')
     api project(':face_res')
 
-    // 全局 logger
-    api 'com.orhanobut:logger:2.2.0'
+    //logger
+    api "com.orhanobut:logger:$rootProject.ext.loggerVersion"
     //okhttp3 拦截器
     api "com.squareup.okhttp3:logging-interceptor:$rootProject.ext.okhttp3Version"
+    //util
+    api "com.blankj:utilcode:$rootProject.ext.utilcodeVersion"
+    // 圆角弹框库
+    api "com.mylhyl:circleDialog:$rootProject.ext.circleDialogVersion"
+    // 加载中效果
+    api 'com.wang.avi:library:2.1.3'
+    
 
 }

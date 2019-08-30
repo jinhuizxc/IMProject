@@ -30,4 +30,15 @@ public class Common {
         long MAX_UPLOAD_IMAGE_LENGTH = 860 * 1024;
     }
 
+    /**
+     * 本地通知栏信息配置
+     */
+    public class Notification {
+
+        public static final String CHANNEL_ID = "CHANNEL_ID";
+
+        public static final String CHANNEL_NAME = "IMProject";  // 通道的用户可见名称
+    }
+
+
 }

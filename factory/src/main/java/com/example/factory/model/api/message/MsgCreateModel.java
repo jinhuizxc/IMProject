@@ -9,6 +9,8 @@ import com.example.factory.persistence.Account;
 import java.util.Date;
 import java.util.UUID;
 
+
+
 /**
  * @author qiujuer Email:qiujuer@live.cn
  * @version 1.0.0
@@ -153,7 +155,19 @@ public class MsgCreateModel {
             model.receiverId = message.getGroup().getId();
             model.receiverType = Message.RECEIVER_TYPE_GROUP;
         }
-
         return model;
+    }
+
+    @Override
+    public String toString() {
+        return "MsgCreateModel{" +
+                "id='" + id + '\'' +
+                ", content='" + content + '\'' +
+                ", attach='" + attach + '\'' +
+                ", type=" + type +
+                ", receiverId='" + receiverId + '\'' +
+                ", receiverType=" + receiverType +
+                ", card=" + card +
+                '}';
     }
 }

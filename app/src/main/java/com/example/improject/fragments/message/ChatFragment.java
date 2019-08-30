@@ -49,6 +49,10 @@ import java.util.Objects;
 import butterknife.BindView;
 import butterknife.OnClick;
 
+/**
+ * chat基类 ->子类继承
+ * @param <InitModel>
+ */
 public abstract class ChatFragment<InitModel>
         extends PresenterFragment<ChatContract.Presenter>
         implements AppBarLayout.OnOffsetChangedListener,
@@ -285,6 +289,7 @@ public abstract class ChatFragment<InitModel>
             // 发送
             String content = mContent.getText().toString();
             mContent.setText("");
+            // 发送文本消息
             mPresenter.pushText(content);
         } else {
             onMoreClick();

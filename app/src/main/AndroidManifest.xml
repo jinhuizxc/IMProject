@@ -93,6 +93,7 @@
             android:name=".push.AppMessageReceiverService"
             android:permission="android.permission.BIND_JOB_SERVICE"/>
 
+
     </application>
 
 </manifest>

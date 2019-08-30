@@ -16,6 +16,7 @@ import com.example.factory.presenter.message.ChatUserPresenter;
 import com.example.improject.R;
 import com.example.improject.activity.PersonalActivity;
 import com.example.improject.widget.PortraitView;
+import com.orhanobut.logger.Logger;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -142,6 +143,8 @@ public class ChatUserFragment extends ChatFragment<User>
     @Override
     protected ChatContract.Presenter initPresenter() {
         // 初始化Presenter
+        Logger.d("ChatUserFragment -> mReceiverId = " + mReceiverId);
+        // ChatUserFragment -> mReceiverId = b96d9cd6-8953-4144-b075-7e40a12da298
         return new ChatUserPresenter(this, mReceiverId);
     }
 }

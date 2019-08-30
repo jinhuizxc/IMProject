@@ -2,6 +2,7 @@ package com.example.improject.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.view.Menu;
@@ -11,18 +12,22 @@ import android.view.animation.AnticipateOvershootInterpolator;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import com.blankj.utilcode.util.LogUtils;
+import com.blankj.utilcode.util.ToastUtils;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.drawable.GlideDrawable;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.ViewTarget;
 import com.example.factory.persistence.Account;
 import com.example.improject.common.app.BaseActivity;
+import com.example.improject.utils.NotificationUtils;
 import com.example.improject.widget.PortraitView;
 import com.example.improject.R;
 import com.example.improject.fragments.main.ActiveFragment;
 import com.example.improject.fragments.main.ContactFragment;
 import com.example.improject.fragments.main.GroupFragment;
 import com.example.improject.helper.NavHelper;
+import com.mylhyl.circledialog.CircleDialog;
 
 import net.qiujuer.genius.ui.Ui;
 import net.qiujuer.genius.ui.widget.FloatActionButton;
@@ -82,6 +87,9 @@ public class MainActivity extends BaseActivity implements
     protected void initWidget() {
         super.initWidget();
 
+
+        checkOpenNotification();
+
         // 初始化底部辅助工具类
         mNavHelper = new NavHelper<>(this, R.id.lay_container,
                 getSupportFragmentManager(), this);
@@ -102,6 +110,36 @@ public class MainActivity extends BaseActivity implements
                     }
                 });
 
+    }
+
+    private void checkOpenNotification() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            if (!NotificationUtils.isNotificationEnabled(this)) {
+                new CircleDialog.Builder()
+                        .setTitle("您还未开启系统通知，可能会影响消息的接收，要去开启吗？")
+                        .setTitleColor(getResources().getColor(R.color.black))
+                        .setWidth(0.8f)
+
+                        .setCancelable(false)
+                        .setPositive("确定", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                // 跳转权限设置
+                                NotificationUtils.gotoSet(MainActivity.this);
+                            }
+                        })
+                        .setNegative("取消", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+
+                            }
+                        })
+                        .show(getSupportFragmentManager());
+            } else {
+                ToastUtils.showShort("您已开启通知权限");
+                LogUtils.e("onNext: " + "已开启通知权限");
+            }
+        }
     }
 
     @Override

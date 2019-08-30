@@ -10,6 +10,7 @@ import com.example.factory.model.db.Message;
 import com.example.factory.persistence.Account;
 import com.example.factory.presenter.BaseSourcePresenter;
 import com.example.factory.utils.DiffUiDataCallback;
+import com.orhanobut.logger.Logger;
 
 import java.util.List;
 
@@ -41,6 +42,7 @@ public class ChatPresenter<View extends ChatContract.View>
                 .content(content, Message.TYPE_STR)
                 .build();
 
+        Logger.d("消息发送实体: " + model);
         // 进行网络发送
         MessageHelper.push(model);
     }

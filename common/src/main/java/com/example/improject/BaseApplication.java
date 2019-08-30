@@ -23,6 +23,7 @@ import java.util.List;
 public class BaseApplication extends Application {
 
     private static BaseApplication instance;
+
     private List<Activity> activities = new ArrayList<>();
 
     @Override

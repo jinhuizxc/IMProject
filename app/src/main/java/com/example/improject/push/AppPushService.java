@@ -16,7 +16,7 @@ import com.igexin.sdk.PushService;
  * package com.getui.demo;
  *
  * // 仅2.13.1.0及以上版本才能直接extends PushService，低于此版本请延用之前实现方式
- * public class AppPushService extends com.igexin.sdk.PushService {
+ * public class AppPushServiceOld extends com.igexin.sdk.PushService {
  *
  * }
  *
@@ -29,8 +29,8 @@ import com.igexin.sdk.PushService;
  *  当收到消息后可以通过广播方式传递出来，或者通过GTIntentService传递消息出来
  *  比如：{@link AppMessageReceiverService}
  *
- *  public class AppPushService extends Service {
- *     public AppPushService() {
+ *  public class AppPushServiceOld extends Service {
+ *     public AppPushServiceOld() {
  *     }
  *
  *     @Override

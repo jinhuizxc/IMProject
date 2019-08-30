@@ -35,6 +35,7 @@ import retrofit2.Response;
  * @version 1.0.0
  */
 public class MessageHelper {
+
     // 从本地找消息
     public static Message findFromLocal(String id) {
         return SQLite.select()
@@ -88,7 +89,6 @@ public class MessageHelper {
                             // 直接返回
                             return;
                         }
-
 
                         // 成功则把网络路径进行替换
                         card.setContent(content);

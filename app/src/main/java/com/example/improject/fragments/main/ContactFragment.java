@@ -104,6 +104,7 @@ public class ContactFragment extends PresenterFragment<ContactContract.Presenter
     }
 
     class ViewHolder extends RecyclerAdapter.ViewHolder<User> {
+
         @BindView(R.id.im_portrait)
         PortraitView mPortraitView;
 
