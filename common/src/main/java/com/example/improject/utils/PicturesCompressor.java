@@ -1,12 +1,11 @@
 package com.example.improject.utils;
 
-import android.app.Application;
 import android.graphics.BitmapFactory;
 import android.util.Log;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.Target;
-import com.example.improject.BaseApplication;
+import com.example.improject.common.app.BaseApplication;
 
 
 import java.io.File;

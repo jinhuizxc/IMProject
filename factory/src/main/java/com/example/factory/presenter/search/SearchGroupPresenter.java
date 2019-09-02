@@ -17,6 +17,7 @@ import retrofit2.Call;
  */
 public class SearchGroupPresenter extends BasePresenter<SearchContract.GroupView>
         implements SearchContract.Presenter, DataSource.Callback<List<GroupCard>> {
+
     private Call searchCall;
 
     public SearchGroupPresenter(SearchContract.GroupView view) {

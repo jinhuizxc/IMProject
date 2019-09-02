@@ -7,7 +7,7 @@ import com.example.factory.data.helper.AccountHelper;
 import com.example.factory.model.api.account.RegisterModel;
 import com.example.factory.model.db.User;
 import com.example.factory.persistence.Account;
-import com.example.improject.Common;
+import com.example.improject.common.Common;
 import com.example.improject.factory.data.DataSource;
 import com.example.improject.factory.presenter.BasePresenter;
 
@@ -18,6 +18,7 @@ import java.util.regex.Pattern;
 
 public class RegisterPresenter extends BasePresenter<RegisterContract.View>
         implements RegisterContract.Presenter, DataSource.Callback<User> {
+
     public RegisterPresenter(RegisterContract.View view) {
         super(view);
     }

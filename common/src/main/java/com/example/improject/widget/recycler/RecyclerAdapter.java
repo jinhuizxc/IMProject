@@ -30,7 +30,6 @@ public abstract class RecyclerAdapter<T>
         AdapterCallBack<T> {
 
     private List<T> mDataList;
-
     private AdapterListener<T> mListener;
 
     /**
@@ -48,6 +47,25 @@ public abstract class RecyclerAdapter<T>
         this.mDataList = mDataList;
         this.mListener = mListener;
     }
+
+    /**
+     * 复写默认的布局类型返回
+     * @param position
+     * @return  类型，其实复写返回的都是xml文件的id
+     */
+    @Override
+    public int getItemViewType(int position) {
+        return getItemViewType(position, mDataList.get(position));
+    }
+
+    /**
+     * 得到布局的返回类型
+     * @param position
+     * @param data
+     * @return
+     */
+    @LayoutRes
+    protected abstract int getItemViewType(int position, T data);
 
     /**
      * 创建一个ViewHolder
@@ -71,32 +89,20 @@ public abstract class RecyclerAdapter<T>
         root.setOnLongClickListener(this);
 
         holder.unbinder = ButterKnife.bind(holder, root);
+        // 绑定callback
         holder.callBack = this;
 
         return holder;
     }
 
-
     /**
-     * 复写默认的布局类型返回
-     * @param position
-     * @return  类型，其实复写返回的都是xml文件的id
+     * 得到一个新的ViewHolder
+     *
+     * @param root     根布局
+     * @param viewType 布局类型，其实就是XML的ID
+     * @return ViewHolder
      */
-    @Override
-    public int getItemViewType(int position) {
-        return getItemViewType(position, mDataList.get(position));
-    }
-
-    /**
-     * 得到布局的返回类型
-     * @param position
-     * @param data
-     * @return
-     */
-    @LayoutRes
-    protected abstract int getItemViewType(int position, T data);
-
-    protected abstract ViewHolder<T> onCreateViewHolder(View root, int type);
+    protected abstract ViewHolder<T> onCreateViewHolder(View root, int viewType);
 
     /**
      * 绑定数据到一个Holder上
@@ -114,7 +120,6 @@ public abstract class RecyclerAdapter<T>
 
     /**
      * 得到当前集合的数据数量
-     *
      * @return
      */
     @Override
@@ -241,24 +246,6 @@ public abstract class RecyclerAdapter<T>
         void onItemLongClick(RecyclerAdapter.ViewHolder holder, T data);
     }
 
-    /**
-     * 对回调接口做一次实现AdapterListener
-     *
-     * @param <T>
-     */
-    public static abstract class AdapterListenerImpl<T> implements AdapterListener<T>{
-
-        @Override
-        public void onItemClick(ViewHolder holder, T data) {
-
-        }
-
-        @Override
-        public void onItemLongClick(ViewHolder holder, T data) {
-
-        }
-    }
-
     // 数据与viewHolder绑定在一起
     public static abstract class ViewHolder<T> extends RecyclerView.ViewHolder {
 
@@ -299,4 +286,23 @@ public abstract class RecyclerAdapter<T>
             }
         }
     }
+
+    /**
+     * 对回调接口做一次实现AdapterListener
+     *
+     * @param <T>
+     */
+    public static abstract class AdapterListenerImpl<T> implements AdapterListener<T>{
+
+        @Override
+        public void onItemClick(ViewHolder holder, T data) {
+
+        }
+
+        @Override
+        public void onItemLongClick(ViewHolder holder, T data) {
+
+        }
+    }
+
 }

@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.improject.BaseApplication;
+import com.example.improject.common.app.BaseApplication;
 import com.example.improject.R;
 import com.example.improject.widget.convention.PlaceHolderView;
 

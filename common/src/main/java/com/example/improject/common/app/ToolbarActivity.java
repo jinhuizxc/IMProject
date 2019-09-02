@@ -6,6 +6,7 @@ import android.support.v7.widget.Toolbar;
 import com.example.improject.R;
 
 public abstract class ToolbarActivity extends BaseActivity {
+
     protected Toolbar mToolbar;
 
 

@@ -1,8 +1,10 @@
 package com.example.improject;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 
+import com.example.improject.common.app.BaseApplication;
 import com.example.improject.push.AppMessageReceiverService;
 import com.example.improject.push.AppPushService;
 import com.igexin.sdk.PushManager;
@@ -37,12 +39,16 @@ public class App extends BaseApplication {
         //初始化DBFLOW
         FlowManager.init(this);
 
-
         // 注册生命周期
         registerActivityLifecycleCallbacks(new PushInitializeLifecycle());
 
     }
 
+    @Override
+    protected void showAccountView(Context context) {
+        // 登录界面的显示
+
+    }
 
     /**
      * 个推服务在部分手机上极易容易回收，可放Resumed中唤起

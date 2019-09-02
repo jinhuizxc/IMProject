@@ -22,8 +22,8 @@ import android.support.v4.app.NotificationManagerCompat;
 import android.widget.RemoteViews;
 
 import com.blankj.utilcode.util.LogUtils;
-import com.example.improject.BaseApplication;
-import com.example.improject.Common;
+import com.example.improject.common.app.BaseApplication;
+import com.example.improject.common.Common;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;

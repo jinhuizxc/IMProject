@@ -51,7 +51,9 @@ public class Account {
                 .apply();
     }
 
-
+    /**
+     * 进行数据加载
+     */
     public static void load(Context context) {
         SharedPreferences sharedPreferences = context.getSharedPreferences(Account.class.getName(),
                 Context.MODE_PRIVATE);
@@ -114,6 +116,13 @@ public class Account {
         return isBind;
     }
 
+    /**
+     * 设置绑定状态
+     */
+    public static void setBind(boolean isBind) {
+        Account.isBind = isBind;
+        Account.save(Factory.app());
+    }
 
     /**
      * 返回用户Id
@@ -155,11 +164,22 @@ public class Account {
         save(Factory.app());
     }
 
+
     /**
-     * 设置绑定状态
+     * 是否已经完善了用户信息
+     *
+     * @return True 是完成了
      */
-    public static void setBind(boolean isBind) {
-        Account.isBind = isBind;
-        Account.save(Factory.app());
+    public static boolean isComplete() {
+        // 首先保证登录成功
+        if (isLogin()) {
+            User self = getUser();
+            return !TextUtils.isEmpty(self.getDesc())
+                    && !TextUtils.isEmpty(self.getPortrait())
+                    && self.getSex() != 0;
+        }
+        // 未登录返回信息不完全
+        return false;
     }
+
 }

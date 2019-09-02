@@ -2,7 +2,6 @@ package com.example.improject.common.app;
 
 import android.content.Context;
 
-import com.example.improject.BaseApplication;
 import com.example.improject.factory.presenter.BaseContract;
 
 public abstract class PresenterFragment<Presenter extends BaseContract.Presenter>

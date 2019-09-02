@@ -1,11 +1,8 @@
 package com.example.factory.utils;
 
 
-
-import android.app.Application;
-
 import com.example.factory.net.Network;
-import com.example.improject.BaseApplication;
+import com.example.improject.common.app.BaseApplication;
 import com.example.improject.utils.HashUtil;
 import com.example.improject.utils.StreamUtil;
 
@@ -28,8 +25,10 @@ import okhttp3.Response;
  * @version 1.0.0
  */
 public class FileCache<Holder> {
+
     private File baseDir;
     private String ext;
+
     private CacheListener<Holder> listener;
     // 最后一次的目标
     private SoftReference<Holder> holderSoftReference;

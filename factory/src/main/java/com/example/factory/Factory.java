@@ -11,13 +11,11 @@ import com.example.factory.data.user.UserCenter;
 import com.example.factory.data.user.UserDispatcher;
 import com.example.factory.model.api.PushModel;
 import com.example.factory.model.api.RspModel;
-import com.example.factory.model.api.account.AccountRspModel;
 import com.example.factory.model.card.GroupCard;
 import com.example.factory.model.card.GroupMemberCard;
 import com.example.factory.model.card.MessageCard;
 import com.example.factory.model.card.UserCard;
-import com.example.factory.model.db.User;
-import com.example.improject.BaseApplication;
+import com.example.improject.common.app.BaseApplication;
 import com.example.factory.persistence.Account;
 import com.example.factory.utils.DBFlowExclusionStrategy;
 import com.example.improject.factory.data.DataSource;
@@ -172,30 +170,10 @@ public class Factory {
     }
 
     /**
-     * 获取一个群处理中心的实现类
-     *
-     * @return 群中心的规范接口
+     * 收到账户退出的消息需要进行账户退出重新登录
      */
-    public static GroupCenter getGroupCenter() {
-        return GroupDispatcher.instance();
-    }
+    private void logout() {
 
-    /**
-     * 获取一个消息中心的实现类
-     *
-     * @return 消息中心的规范接口
-     */
-    public static MessageCenter getMessageCenter() {
-        return MessageDispatcher.instance();
-    }
-
-    /**
-     * 获取一个用户中心的实现类
-     *
-     * @return 用户中心的规范接口
-     */
-    public static UserCenter getUserCenter() {
-        return UserDispatcher.instance();
     }
 
     /**
@@ -259,12 +237,31 @@ public class Factory {
         }
     }
 
+    /**
+     * 获取一个群处理中心的实现类
+     *
+     * @return 群中心的规范接口
+     */
+    public static GroupCenter getGroupCenter() {
+        return GroupDispatcher.instance();
+    }
 
     /**
-     * 收到账户退出的消息需要进行账户退出重新登录
+     * 获取一个消息中心的实现类
+     *
+     * @return 消息中心的规范接口
      */
-    private void logout() {
+    public static MessageCenter getMessageCenter() {
+        return MessageDispatcher.instance();
+    }
 
+    /**
+     * 获取一个用户中心的实现类
+     *
+     * @return 用户中心的规范接口
+     */
+    public static UserCenter getUserCenter() {
+        return UserDispatcher.instance();
     }
 
 

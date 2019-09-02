@@ -3,6 +3,7 @@ package com.example.improject.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.view.Menu;
@@ -88,7 +89,7 @@ public class MainActivity extends BaseActivity implements
         super.initWidget();
 
 
-        checkOpenNotification();
+        NotificationUtils.checkNotification(MainActivity.this);
 
         // 初始化底部辅助工具类
         mNavHelper = new NavHelper<>(this, R.id.lay_container,
@@ -112,14 +113,24 @@ public class MainActivity extends BaseActivity implements
 
     }
 
-    private void checkOpenNotification() {
+    @Override
+    protected boolean initArgs(Bundle bundle) {
+        if (Account.isComplete()) {
+            // 判断用户信息是否完全，完全则走正常流程
+            return super.initArgs(bundle);
+        } else {
+            UserActivity.startActivity(this);
+            return false;
+        }
+    }
+
+    /*private void checkOpenNotification() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             if (!NotificationUtils.isNotificationEnabled(this)) {
                 new CircleDialog.Builder()
                         .setTitle("您还未开启系统通知，可能会影响消息的接收，要去开启吗？")
                         .setTitleColor(getResources().getColor(R.color.black))
                         .setWidth(0.8f)
-
                         .setCancelable(false)
                         .setPositive("确定", new View.OnClickListener() {
                             @Override
@@ -136,11 +147,10 @@ public class MainActivity extends BaseActivity implements
                         })
                         .show(getSupportFragmentManager());
             } else {
-                ToastUtils.showShort("您已开启通知权限");
                 LogUtils.e("onNext: " + "已开启通知权限");
             }
         }
-    }
+    }*/
 
     @Override
     protected void initData() {

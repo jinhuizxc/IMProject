@@ -3,9 +3,11 @@ package com.example.factory.data.helper;
 import com.example.factory.Factory;
 import com.example.factory.R;
 import com.example.factory.model.api.RspModel;
+import com.example.factory.model.api.user.UserUpdateModel;
 import com.example.factory.model.card.UserCard;
 import com.example.factory.model.db.User;
 import com.example.factory.model.db.User_Table;
+import com.example.factory.model.db.view.UserSampleModel;
 import com.example.factory.net.Network;
 import com.example.factory.net.RemoteService;
 import com.example.factory.persistence.Account;
@@ -35,6 +37,21 @@ public class UserHelper {
 
     // 从网络查询某用户的信息
     private static User findFromNet(String id) {
+        RemoteService remoteService = Network.remote();
+        try {
+            Response<RspModel<UserCard>> response = remoteService.userFind(id).execute();
+            UserCard card = response.body().getResult();
+            if (card != null) {
+                User user = card.build();
+                // 数据库的存储并通知
+                Factory.getUserCenter().dispatch(card);
+                return user;
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         return null;
     }
 
@@ -58,6 +75,22 @@ public class UserHelper {
                 .limit(100)
                 .queryList();
     }
+
+    // 获取一个联系人列表，
+    // 但是是一个简单的数据的
+    public static List<UserSampleModel> getSampleContact() {
+        //"select id = ??";
+        //"select User_id = ??";
+        return SQLite.select(User_Table.id.withTable().as("id"),
+                User_Table.name.withTable().as("name"),
+                User_Table.portrait.withTable().as("portrait"))
+                .from(User.class)
+                .where(User_Table.isFollow.eq(true))
+                .and(User_Table.id.notEq(Account.getUserId()))
+                .orderBy(User_Table.name, true)
+                .queryCustomList(UserSampleModel.class);
+    }
+
 
     // 刷新联系人的操作，不需要Callback，直接存储到数据库，
     // 并通过数据库观察者进行通知界面更新，
@@ -159,5 +192,36 @@ public class UserHelper {
         }
         return user;
     }
+
+    // 更新用户信息的操作，异步的
+    public static void update(UserUpdateModel model, final DataSource.Callback<UserCard> callback) {
+        // 调用Retrofit对我们的网络请求接口做代理
+        RemoteService service = Network.remote();
+        // 得到一个Call
+        Call<RspModel<UserCard>> call = service.userUpdate(model);
+        // 网络请求
+        call.enqueue(new Callback<RspModel<UserCard>>() {
+            @Override
+            public void onResponse(Call<RspModel<UserCard>> call, Response<RspModel<UserCard>> response) {
+                RspModel<UserCard> rspModel = response.body();
+                if (rspModel.success()) {
+                    UserCard userCard = rspModel.getResult();
+                    // 唤起进行保存的操作
+                    Factory.getUserCenter().dispatch(userCard);
+                    // 返回成功
+                    callback.onDataLoaded(userCard);
+                } else {
+                    // 错误情况下进行错误分配
+                    Factory.decodeRspCode(rspModel, callback);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<RspModel<UserCard>> call, Throwable t) {
+                callback.onDataNotAvailable(R.string.data_network_error);
+            }
+        });
+    }
+
 
 }

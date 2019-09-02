@@ -16,7 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.improject.BaseApplication;
+import com.example.improject.common.app.BaseApplication;
 import com.example.improject.R;
 
 import java.util.List;

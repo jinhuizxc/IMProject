@@ -8,7 +8,7 @@ import android.util.Log;
 
 import com.bumptech.glide.Glide;
 import com.example.improject.common.app.BaseFragment;
-import com.example.improject.BaseApplication;
+import com.example.improject.common.app.BaseApplication;
 import com.example.improject.widget.PortraitView;
 import com.example.improject.R;
 import com.example.improject.fragments.media.GalleryFragment;

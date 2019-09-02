@@ -14,7 +14,8 @@ import com.orhanobut.logger.Logger;
 import net.qiujuer.genius.kit.handler.Run;
 import net.qiujuer.genius.kit.handler.runable.Action;
 
-public class LoginPresenter extends BasePresenter<LoginContract.View> implements LoginContract.Presenter, DataSource.Callback<User> {
+public class LoginPresenter extends BasePresenter<LoginContract.View>
+        implements LoginContract.Presenter, DataSource.Callback<User> {
 
     public LoginPresenter(LoginContract.View mView) {
         super(mView);

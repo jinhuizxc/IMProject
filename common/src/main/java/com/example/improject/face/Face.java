@@ -49,6 +49,7 @@ import java.util.zip.ZipFile;
  * @version 1.0.0
  */
 public class Face {
+
     // 全局的表情的映射ArrayMap，更加轻量级
     private static final ArrayMap<String, Bean> FACE_MAP = new ArrayMap<>();
     private static List<FaceTab> FACE_TABS = null;

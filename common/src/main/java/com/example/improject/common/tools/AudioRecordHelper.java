@@ -6,7 +6,7 @@ import android.media.MediaRecorder;
 import android.os.SystemClock;
 import android.util.Log;
 
-import com.example.improject.BaseApplication;
+import com.example.improject.common.app.BaseApplication;
 
 import net.qiujuer.lame.Lame;
 import net.qiujuer.lame.LameAsyncEncoder;

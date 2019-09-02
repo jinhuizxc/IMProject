@@ -24,7 +24,7 @@ import com.example.factory.model.db.User;
 import com.example.factory.persistence.Account;
 import com.example.factory.presenter.message.ChatContract;
 import com.example.factory.utils.FileCache;
-import com.example.improject.BaseApplication;
+import com.example.improject.common.app.BaseApplication;
 import com.example.improject.R;
 import com.example.improject.activity.MessageActivity;
 import com.example.improject.common.app.PresenterFragment;

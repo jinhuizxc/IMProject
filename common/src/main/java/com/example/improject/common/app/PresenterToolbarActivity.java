@@ -3,7 +3,6 @@ package com.example.improject.common.app;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 
-import com.example.improject.BaseApplication;
 import com.example.improject.R;
 import com.example.improject.factory.presenter.BaseContract;
 

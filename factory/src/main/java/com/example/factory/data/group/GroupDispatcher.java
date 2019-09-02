@@ -48,6 +48,7 @@ public class GroupDispatcher implements GroupCenter{
     }
 
     private class GroupMemberRspHandler implements Runnable {
+
         private final GroupMemberCard[] cards;
 
         GroupMemberRspHandler(GroupMemberCard[] cards) {

@@ -1,4 +1,4 @@
-package com.example.improject;
+package com.example.improject.common.app;
 
 import android.app.Activity;
 import android.app.Application;

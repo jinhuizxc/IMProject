@@ -1,20 +1,16 @@
 package com.example.factory.net;
 
 import android.support.annotation.NonNull;
-import android.text.TextUtils;
 
 import com.blankj.utilcode.util.LogUtils;
-import com.example.improject.Common;
+import com.example.factory.net.interceptor.HeaderInterceptor;
+import com.example.factory.net.interceptor.LoggingInterceptor;
+import com.example.improject.common.Common;
 import com.example.factory.Factory;
-import com.example.factory.persistence.Account;
 
-import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
-import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -53,23 +49,10 @@ public class Network {
                         LogUtils.d("拦截的网络请求: " + message);
                     }
                 }).setLevel(HttpLoggingInterceptor.Level.BODY))
-                .addInterceptor(new Interceptor() {
-                    @Override
-                    public Response intercept(Chain chain) throws IOException {
-                        // 拿到我们的请求
-                        Request original = chain.request();
-                        // 重新进行build
-                        Request.Builder builder = original.newBuilder();
-                        if (!TextUtils.isEmpty(Account.getToken())){
-                            // 注入一个token
-                            builder.addHeader("token", Account.getToken());
-                        }
-                        builder.addHeader("Content-Type", "application/json");
-                        Request newRequest = builder.build();
-                        // 返回
-                        return chain.proceed(newRequest);
-                    }
-                })
+                // 添加logger拦截
+                .addInterceptor(new LoggingInterceptor())
+                // header拦截器
+                .addInterceptor(new HeaderInterceptor())
                 .build();
         return instance.okHttpClient;
     };
