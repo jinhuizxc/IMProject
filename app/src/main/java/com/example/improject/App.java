@@ -12,14 +12,6 @@ import com.raizlabs.android.dbflow.config.FlowManager;
 
 /**
  * 个推集成:
- * 应用名称：ImProject
- * appId：zo9V9CS82o6UiMNG0urM63
- * appSecret：r6bbcykLjhAfoEha4MTCB3
- * appKey：W3LBIwK3JqA9hsPO1Hlm17
- * 应用包名：  com.example.improject
- * 应用签名：E1:9D:40:7C:FB:D8:EF:B2:92:F9:07:27:2F:ED:09:3D:27:2D:87:BC
- * masterSecret：【个推】 j2IZzUiliCATJ3RrU7uJG8
- * <p>
  * 数据库DBFlow:
  * <p>
  * Android 阿里云OSS上传
